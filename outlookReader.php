@@ -4,6 +4,7 @@ include __DIR__.'/vendor/autoload.php';
 // Script para obtener bandeja de entrada de docs@enterprise.com
 
 use Webklex\PHPIMAP\ClientManager;
+// To use dotenv: `composer require vlucas/phpdotenv`
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
