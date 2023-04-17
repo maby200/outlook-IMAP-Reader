@@ -69,6 +69,7 @@ As [FoxInDisguise](https://stackoverflow.com/a/74491148/10095656) says:
 > You'll be redirected to <u>http://localhost/test_imap?code=LmpxSnTw...&session_state=b5d713....</u> <br /> Save the code **(remove the '&' at the end !)** and the session state inside the url. These codes expired after a few hours !
 
 ## 3 Get an access token
+In this script `CLIENT_SECRET` is the one named as **Secret Value** in your microsoft
 ```php
 <?php
 $CLIENT_ID="...";
