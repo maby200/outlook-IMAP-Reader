@@ -165,24 +165,28 @@ try {
 You have finally made a connection and can see messages. But what happens if  you want to do the same tomorrow or in next days?
 
 ## 5 Connecting to mail box everyday:
-Since access_token last less than a day, the way to connect to mail box in the future is to use the refresh_token: <br />
-For this step we just have to run this script. I assume you have already saved your refresh_token.
+With the 3 preious scripts you cann connect to your mailbox, but what happens when you want to connect tomorrow? So far I know that the access_token lasts just 1 hour or little more.
+
+Due to that reason, the way to connect to mail box in the future is to use the refresh_token: <br />
+
+
+For this step **<u>we just have to run this script</u>**. I assume you have already saved your refresh_token.
 
 ```php
 include __DIR__.'/vendor/autoload.php'; 
     
 use Webklex\PHPIMAP\ClientManager;
 
-$CLIENT_ID="c-9c-....";
-$CLIENT_SECRET="Y~tN...";
-$TENANT="5-48...";
+$APPLICATION_ID="c-9c-....";
+$SECRET_VALUE="Y~tN...";
+$DIRECTORY_ID="5-48...";
 $REFRESH_TOKEN="EebH9H8S7...";
 
-$url= "https://login.microsoftonline.com/$TENANT/oauth2/v2.0/token";
+$url= "https://login.microsoftonline.com/$DIRECTORY_ID/oauth2/v2.0/token";
 
 $param_post_curl = [ 
- 'client_id'=>$CLIENT_ID,
- 'client_secret'=>$CLIENT_SECRET,
+ 'client_id'=>$APPLICATION_ID,
+ 'client_secret'=>$SECRET_VALUE,
  'refresh_token'=>$REFRESH_TOKEN,
  'grant_type'=>'refresh_token' ];
 
@@ -234,4 +238,13 @@ if(!empty($oResult)){
         echo('Error : '.$array_php_resul["error_description"]); 
     }
 }   
+```
+
+## Alternatively you can run in a safer way the script that is in [the code file](https://github.com/maby200/outlook-IMAP-Reader/blob/main/outlookReader.php) of this repo to use an [.env](https://github.com/maby200/outlook-IMAP-Reader/blob/main/.env.example) file where only you can see your credentials 
+
+Just remember both files have to be in the same folder.
+
+Also you have to install dotenv (in the same folder of your scripts):
+```bash
+$ composer require vlucas/phpdotenv
 ```
