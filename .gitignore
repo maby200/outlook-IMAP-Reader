@@ -3,8 +3,8 @@
 vendor/
 
 composer.*
-1_getToken.php
-2_getAccessToken.php
-3_outlookReader.php
+*getToken.php
+*getAccessToken.php
+*outlookReader.php
 
 reader.php
