@@ -1,3 +1,8 @@
+# **REFRESH TOKEN LASTS ~3 DAYS APROX**
+<br />
+
+
+
 # Mail Reader for Outlook, Office 365 accounts with OAuth IMAP protocol
 
 This repo is just a summary of an answer on [StackOverflow](https://stackoverflow.com/a/74735069/10095656)
@@ -77,6 +82,7 @@ $CLIENT_SECRET="...";
 $TENANT="...";
 $SCOPE="https://outlook.office365.com/IMAP.AccessAsUser.All offline_access";
 $CODE="...";
+$SESSION="...";
 $REDIRECT_URI="http://localhost/test_imap";
 
 echo "Trying to authenticate the session..";
