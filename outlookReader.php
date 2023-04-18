@@ -4,27 +4,29 @@ include __DIR__.'/vendor/autoload.php';
 // Script para obtener bandeja de entrada de docs@enterprise.com
 
 use Webklex\PHPIMAP\ClientManager;
-// To use dotenv: `composer require vlucas/phpdotenv`
+
+// AQUÍ SE ESTÁ LEYENDO EL ARCHIVO .env QUE DEBE ESTAR EN LA MISMA CARPETA DE ESTE SCRIPT
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Usar Application (client) ID
-$CLIENT_ID=$_ENV['CLIENT_ID'];
+$APPLICATION_ID=$_ENV['APPLICATION_ID'];
 
 // Usar Scret value
-$CLIENT_SECRET=$_ENV['CLIENT_SECRET'];
+$SECRET_VALUE=$_ENV['SECRET_VALUE'];
 
 // Usar Directory (tenant) ID
-$TENANT=$_ENV['TENANT'];
+$DIRECTORY_ID=$_ENV['DIRECTORY_ID'];
 
 // Para esta cuenta, se tiene el refresh token
 $REFRESH_TOKEN=$_ENV['REFRESH_TOKEN'];
 
-$url= "https://login.microsoftonline.com/$TENANT/oauth2/v2.0/token";
+$url= "https://login.microsoftonline.com/$DIRECTORY_ID/oauth2/v2.0/token";
 
+// NO CAMBIAR LOS NOMBRES DE VARIABLES EN MINUSCULAS pues son nombres requeridos por Microsoft
 $param_post_curl = [ 
- 'client_id'=>$CLIENT_ID,
- 'client_secret'=>$CLIENT_SECRET,
+ 'client_id'=>$APPLICATION_ID,
+ 'client_secret'=>$SECRET_VALUE,
  'refresh_token'=>$REFRESH_TOKEN,
  'grant_type'=>'refresh_token' ];
 
@@ -71,7 +73,7 @@ if(!empty($oResult)){
             $folder = $client->getFolder('INBOX');
             $all_messages = $folder->query()->all()->get();
 
-            echo "<h1>Asunto de mensajes:</h1>", "\n";
+            echo "<h1>Mensajes</h1>", "\n";
             $counter = 1;
 
             foreach($all_messages as $message){
